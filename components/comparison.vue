@@ -80,6 +80,7 @@ $initial-reveal: 50%;
 		z-index: 1;
 		opacity: 0;
 		transition: opacity 0.35s;
+		border-right: 2px solid #fff;
 		& > :first-child {
 			width: 100% * 100% / $initial-reveal;
 			max-width: none;
@@ -128,7 +129,7 @@ $initial-reveal: 50%;
 		left: 50%;
 		transform: translate3d(-50%, -50%, 0);
 		color: #000;
-		background: rgba(255, 255, 255, 0.5);
+		background: #FFFFFF;
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
@@ -157,7 +158,7 @@ $initial-reveal: 50%;
 	}
 
 	.#{$prefix}-range:focus ~ .#{$prefix}-handle {
-		background: rgba(255, 255, 255, 0.85);
+		background: #FFFFFF;
 		box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 	}
 
@@ -169,7 +170,7 @@ $initial-reveal: 50%;
 		line-height: 1;
 		padding: 0.5rem;
 		border-radius: 0.125rem;
-		background: rgba(255, 255, 255, 0.75);
+		background: #FFFFFF;
 	}
 	.#{$prefix}-slider[data-comparison-label]:after {
 		right: 1.5rem;
