@@ -11,10 +11,10 @@ export default {
 		return {
 			comparison: {
 				id: 'silderA',
-				width: '1000px',
+				width: '400px',
 				height: 'auto',
-				src1: require('@/assets/img/aa.png'),
-				src2: require('@/assets/img/bb.png')
+				src1: require('@/assets/img/aa.jpg'),
+				src2: require('@/assets/img/bb.jpg')
 			}
 		};
 	},

@@ -7,7 +7,7 @@
 	</div>
 </template>
 <script>
-import * as comparisonSlider from './comparison.js';
+import { comparisonSlider } from './comparison.js';
 export default {
 	props: {
 		id: {
@@ -44,46 +44,53 @@ export default {
 };
 </script>
 <style lang="scss">
+$prefix: 'comparison';
+$initial-reveal: 50%;
 .zxui-img-comparison {
-	.comparison-slider {
+	.#{$prefix}-slider {
+		*,
+		&:before,
+		&:after,
+		*:before,
+		*:after {
+			box-sizing: border-box;
+		}
 		display: inline-block;
 		position: relative;
 		overflow: hidden;
+
+		img,
+		svg {
+			vertical-align: bottom;
+		}
+		& > * {
+			height: 100%;
+		}
+		& > img {
+			max-width: 100%;
+			height: auto;
+		}
 	}
-	.comparison-slider *,
-	.comparison-slider:before,
-	.comparison-slider:after,
-	.comparison-slider *:before,
-	.comparison-slider *:after {
-		box-sizing: border-box;
-	}
-	.comparison-slider img {
-		vertical-align: bottom;
-	}
-	.comparison-slider > img {
-		max-width: 100%;
-		height: auto;
-	}
-	.comparison-reveal {
+	.#{$prefix}-reveal {
 		position: absolute;
 		left: 0;
 		top: 0;
-		bottom: 0;
-		right: 50%;
+		right: 100% - $initial-reveal;
 		overflow: hidden;
 		z-index: 1;
 		opacity: 0;
 		transition: opacity 0.35s;
-		border-right: 2px solid #fff;
+		& > :first-child {
+			width: 100% * 100% / $initial-reveal;
+			max-width: none;
+			height: 100%;
+		}
+		& > img:first-child {
+			height: auto;
+		}
 	}
-	.comparison-reveal > :first-child {
-		width: 200%;
-		max-width: none;
-	}
-	.comparison-reveal > img:first-child {
-		height: auto;
-	}
-	.comparison-range {
+
+	.#{$prefix}-range {
 		position: absolute;
 		z-index: 2;
 		top: 0;
@@ -98,19 +105,21 @@ export default {
 		opacity: 0;
 		-ms-touch-action: auto;
 		touch-action: auto;
+
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			height: 300vh;
+		}
+		&::-moz-range-thumb {
+			-webkit-appearance: none;
+			height: 300vh;
+		}
+		&::-ms-tooltip {
+			display: none;
+		}
 	}
-	.comparison-range::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		height: 300vh;
-	}
-	.comparison-range::-moz-range-thumb {
-		-webkit-appearance: none;
-		height: 300vh;
-	}
-	.comparison-range::-ms-tooltip {
-		display: none;
-	}
-	.comparison-handle {
+
+	.#{$prefix}-handle {
 		position: absolute;
 		z-index: 2;
 		pointer-events: none;
@@ -119,38 +128,41 @@ export default {
 		left: 50%;
 		transform: translate3d(-50%, -50%, 0);
 		color: #000;
-		background: #ffffff;
+		background: rgba(255, 255, 255, 0.5);
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
-		box-shadow: 0 0 6px transparent;
+		box-shadow: 0 0 6px rgba(0, 0, 0, 0);
 		transition: background 0.3s, box-shadow 0.3s, opacity 0.5s 0.25s;
+
+		&:before,
+		&:after {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			top: 50%;
+			border-top: solid 2px;
+			border-left: solid 2px;
+			transform-origin: 0 0;
+		}
+		&:before {
+			left: 10px;
+			transform: rotate(-45deg);
+		}
+		&:after {
+			right: 0;
+			transform: rotate(135deg);
+		}
 	}
-	.comparison-handle:before,
-	.comparison-handle:after {
-		content: '';
-		position: absolute;
-		width: 10px;
-		height: 10px;
-		top: 50%;
-		border-top: solid 2px;
-		border-left: solid 2px;
-		transform-origin: 0 0;
-	}
-	.comparison-handle:before {
-		left: 10px;
-		transform: rotate(-45deg);
-	}
-	.comparison-handle:after {
-		right: 0;
-		transform: rotate(135deg);
-	}
-	.comparison-range:focus ~ .comparison-handle {
-		background: #fff;
+
+	.#{$prefix}-range:focus ~ .#{$prefix}-handle {
+		background: rgba(255, 255, 255, 0.85);
 		box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 	}
-	.comparison-slider[data-comparison-label]:after,
-	.comparison-reveal[data-comparison-label]:after {
+
+	.#{$prefix}-slider[data-comparison-label]:after,
+	.#{$prefix}-reveal[data-comparison-label]:after {
 		content: attr(data-comparison-label);
 		position: absolute;
 		top: 1.5rem;
@@ -159,19 +171,22 @@ export default {
 		border-radius: 0.125rem;
 		background: rgba(255, 255, 255, 0.75);
 	}
-	.comparison-slider[data-comparison-label]:after {
+	.#{$prefix}-slider[data-comparison-label]:after {
 		right: 1.5rem;
 	}
-	.comparison-reveal[data-comparison-label]:after {
+	.#{$prefix}-reveal[data-comparison-label]:after {
 		left: 1.5rem;
 	}
-	.comparison-slider[data-comparison-label='']:after,
-	.comparison-reveal[data-comparison-label='']:after {
+	.#{$prefix}-slider[data-comparison-label='']:after,
+	.#{$prefix}-reveal[data-comparison-label='']:after {
 		content: none;
 	}
-	.comparison-ready .comparison-reveal,
-	.comparison-ready .comparison-handle {
-		opacity: 1;
+
+	.#{$prefix}-ready {
+		.#{$prefix}-reveal,
+		.#{$prefix}-handle {
+			opacity: 1;
+		}
 	}
 }
 </style>
