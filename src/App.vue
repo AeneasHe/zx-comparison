@@ -13,8 +13,8 @@ export default {
 				id: 'silderA',
 				width: '400px',
 				height: 'auto',
-				src1: require('@/assets/img/aa.jpg'),
-				src2: require('@/assets/img/bb.jpg')
+				src1: require('@/assets/img/aa.png'),
+				src2: require('@/assets/img/bb.png')
 			}
 		};
 	},

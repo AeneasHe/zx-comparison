@@ -83,6 +83,11 @@ export class comparisonSlider {
 				this.move();
 			});
 		});
+		/* document.getElementById(this.element.id).onmousemove = (event) => {
+			this.move2(event.layerX / (this.revealElement.style.width.substring(0, this.revealElement.style.width.length - 2) /
+				100));
+		}; */
+
 		window.addEventListener('resize', () => {
 			this.setImgWidth();
 		});
@@ -91,5 +96,16 @@ export class comparisonSlider {
 		this.revealContainer.style.width = `${this.range.value}%`;
 		this.handle.style.left = `${this.range.value}%`;
 		this.range.setAttribute('aria-valuenow', this.range.value);
+	}
+	move2(e) {
+		if (e < 5) {
+			e = 0;
+		}
+		if (e > 95) {
+			e = 100;
+		}
+		this.revealContainer.style.width = `${e}%`;
+		this.handle.style.left = `${e}%`;
+		this.range.setAttribute('aria-valuenow', e);
 	}
 }
