@@ -1,25 +1,25 @@
 # zx-comparison(作者:初志鑫<1204505056@qq.com>)
 
-### 注意事项
+## 注意事项
 ```
 只能用于Vue CLI项目
 
 ```
 
-### 鸣谢
+## 鸣谢
 ```
 努力了这么久,终于成了一名合格的代码搬运工,我只是有幸站在了巨人的肩膀上,感谢自己,感谢巨人...
-
+[Demo](https://chuzhixin.github.io/zx-comparison/)
 ```
 
-### 实现功能
+## 实现功能
 ```
 1.实现了fas图标的全部集成
 2.提供了更简单的图标使用方案
 
 ```
 
-### 商务合作与赞赏
+## 商务合作与赞赏
 ```
 邮箱  1204505056@qq.com
 QQ 1204505056
@@ -28,13 +28,13 @@ QQ 1204505056
 ```
 ![image](https://raw.githubusercontent.com/chuzhixin/donate/master/donation.png)
 
-### 安装方法
+## 安装方法
 ```
 cnpm i -S zx-comparison
 
 ```
 
-### icon组件main.js全局引入
+## icon组件main.js全局引入
 ```
 import Vue from 'vue'
 import zxComparison from 'zx-comparison'
@@ -42,7 +42,7 @@ Vue.component('byui-comparison', zxComparison)
 
 ```
 
-### byui-parallax-container属性
+## byui-parallax-container属性
 
 | Prop   |      Type      |  Default Value | Description
 |----------	|:-------------:|------							|------			|
@@ -52,7 +52,7 @@ Vue.component('byui-comparison', zxComparison)
 | src1		|  String		| require('@/assets/img/aa.png')| 左侧图片路径	|
 | src2		|  String		| require('@/assets/img/bb.png')| 右侧图片路径	|
 
-### template完整示例
+## template完整示例
 ```
 <template>
 	<div id="app">
