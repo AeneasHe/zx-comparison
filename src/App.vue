@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<byui-comparison :id="comparison.id" :width="comparison.width" :height="comparison.height" :src1="comparison.src1" :src2="comparison.src2"></byui-comparison>
+		<byui-comparison :width="comparison.width" :height="comparison.height" :src1="comparison.src1" :src2="comparison.src2"></byui-comparison>
 	</div>
 </template>
 
@@ -10,7 +10,6 @@ export default {
 	data() {
 		return {
 			comparison: {
-				id: 'silderA',
 				width: '400px',
 				height: 'auto',
 				src1: require('@/assets/img/aa.png'),

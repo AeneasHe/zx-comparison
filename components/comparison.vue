@@ -1,18 +1,25 @@
 <template>
 	<div class="zxui-img-comparison">
 		<div :id="id" class="comparison-slider">
-			<img :style="{ width: width, height: height }" :src="src1" alt="" />
-			<div class="comparison-reveal"><img :style="{ width: width, height: height }" :src="src2" alt="" /></div>
+			<img :style="{ width: width, height: height }" :src="src2" alt="" />
+			<div class="comparison-reveal"><img :style="{ width: width, height: height }" :src="src1" alt="" /></div>
 		</div>
 	</div>
 </template>
 <script>
 import { comparisonSlider } from './comparison.js';
+function uuid(length) {
+	return Number(
+		Math.random()
+			.toString()
+			.substr(3, length) + Date.now()
+	).toString(36);
+}
 export default {
 	props: {
 		id: {
 			type: String,
-			default: 'slider'
+			default: 'slider-' + uuid()
 		},
 		width: {
 			type: String,
@@ -129,7 +136,7 @@ $initial-reveal: 50%;
 		left: 50%;
 		transform: translate3d(-50%, -50%, 0);
 		color: #000;
-		background: #FFFFFF;
+		background: #ffffff;
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
@@ -158,7 +165,7 @@ $initial-reveal: 50%;
 	}
 
 	.#{$prefix}-range:focus ~ .#{$prefix}-handle {
-		background: #FFFFFF;
+		background: #ffffff;
 		box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 	}
 
@@ -170,7 +177,7 @@ $initial-reveal: 50%;
 		line-height: 1;
 		padding: 0.5rem;
 		border-radius: 0.125rem;
-		background: #FFFFFF;
+		background: #ffffff;
 	}
 	.#{$prefix}-slider[data-comparison-label]:after {
 		right: 1.5rem;
