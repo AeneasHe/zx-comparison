@@ -24,11 +24,11 @@ export default {
 		},
 		src1: {
 			type: String,
-			default: require('@/assets/img/aa.png')
+			default: ''
 		},
 		src2: {
 			type: String,
-			default: require('@/assets/img/bb.png')
+			default: ''
 		}
 	},
 	data() {
