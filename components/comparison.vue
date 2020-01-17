@@ -8,6 +8,7 @@
 </template>
 <script>
 import { comparisonSlider } from './comparison.js';
+
 function uuid(length) {
 	return Number(
 		Math.random()
@@ -15,6 +16,7 @@ function uuid(length) {
 			.substr(3, length) + Date.now()
 	).toString(36);
 }
+
 export default {
 	props: {
 		id: {
@@ -35,8 +37,9 @@ export default {
 		},
 		src2: {
 			type: String,
-			default: ''
-		}
+			default: '50'
+		},
+		start: {}
 	},
 	data() {
 		return {};
@@ -44,7 +47,7 @@ export default {
 	computed: {},
 	watch: {},
 	mounted() {
-		new comparisonSlider(document.getElementById(this.id));
+		new comparisonSlider(document.getElementById(this.id), this.start);
 	},
 	destroyed() {},
 	methods: {}
@@ -62,6 +65,7 @@ $initial-reveal: 50%;
 		*:after {
 			box-sizing: border-box;
 		}
+
 		display: inline-block;
 		position: relative;
 		overflow: hidden;
@@ -70,14 +74,17 @@ $initial-reveal: 50%;
 		svg {
 			vertical-align: bottom;
 		}
+
 		& > * {
 			height: 100%;
 		}
+
 		& > img {
 			max-width: 100%;
 			height: auto;
 		}
 	}
+
 	.#{$prefix}-reveal {
 		position: absolute;
 		left: 0;
@@ -88,11 +95,13 @@ $initial-reveal: 50%;
 		opacity: 0;
 		transition: opacity 0.35s;
 		border-right: 2px solid #fff;
+
 		& > :first-child {
 			width: 100% * 100% / $initial-reveal;
 			max-width: none;
 			height: 100%;
 		}
+
 		& > img:first-child {
 			height: auto;
 		}
@@ -118,10 +127,12 @@ $initial-reveal: 50%;
 			-webkit-appearance: none;
 			height: 300vh;
 		}
+
 		&::-moz-range-thumb {
 			-webkit-appearance: none;
 			height: 300vh;
 		}
+
 		&::-ms-tooltip {
 			display: none;
 		}
@@ -154,10 +165,12 @@ $initial-reveal: 50%;
 			border-left: solid 2px;
 			transform-origin: 0 0;
 		}
+
 		&:before {
 			left: 10px;
 			transform: rotate(-45deg);
 		}
+
 		&:after {
 			right: 0;
 			transform: rotate(135deg);
@@ -179,12 +192,15 @@ $initial-reveal: 50%;
 		border-radius: 0.125rem;
 		background: #ffffff;
 	}
+
 	.#{$prefix}-slider[data-comparison-label]:after {
 		right: 1.5rem;
 	}
+
 	.#{$prefix}-reveal[data-comparison-label]:after {
 		left: 1.5rem;
 	}
+
 	.#{$prefix}-slider[data-comparison-label='']:after,
 	.#{$prefix}-reveal[data-comparison-label='']:after {
 		content: none;

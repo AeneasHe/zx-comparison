@@ -1,6 +1,5 @@
 export class comparisonSlider {
-	constructor(element, {
-		start = '50',
+	constructor(element, start, {
 		prefix = 'comparison'
 	} = {}) {
 		this.start = parseInt(start) ? Math.min(100, Math.max(0, parseInt(start))) : 50;
@@ -30,12 +29,14 @@ export class comparisonSlider {
 		});
 		this.onImagesLoad();
 	}
+
 	init() {
 		this.element.classList.add(`${this.prefix}-ready`);
 		this.setImgWidth();
 		this.move();
 		this.addListeners();
 	}
+
 	loadingImg(src) {
 		return new Promise((resolve, reject) => {
 			if (!src) {
@@ -47,11 +48,13 @@ export class comparisonSlider {
 			img.src = src;
 		});
 	}
+
 	loadedBoth() {
 		const mainImageSrc = this.element.children[0].src || this.element.children[0].getAttribute(`data-${this.prefix}-src`);
 		const revealImageSrc = this.revealElement.src || this.revealElement.getAttribute(`data-${this.prefix}-src`);
 		return Promise.all([this.loadingImg(mainImageSrc), this.loadingImg(revealImageSrc)]);
 	}
+
 	onImagesLoad() {
 		if (!this.revealElement) {
 			return;
@@ -65,6 +68,7 @@ export class comparisonSlider {
 			}
 		);
 	}
+
 	addElement(tag, attributes) {
 		const el = document.createElement(tag);
 		Object.keys(attributes).forEach((key) => {
@@ -73,9 +77,11 @@ export class comparisonSlider {
 		this.element.appendChild(el);
 		return el;
 	}
+
 	setImgWidth() {
 		this.revealElement.style.width = getComputedStyle(this.element)['width'];
 	}
+
 	addListeners() {
 		const eventTypes = ['input', 'change'];
 		eventTypes.forEach((i) => {
@@ -84,19 +90,21 @@ export class comparisonSlider {
 			});
 		});
 		/* document.getElementById(this.element.id).onmousemove = (event) => {
-			this.move2(event.layerX / (this.revealElement.style.width.substring(0, this.revealElement.style.width.length - 2) /
-				100));
+		    this.move2(event.layerX / (this.revealElement.style.width.substring(0, this.revealElement.style.width.length - 2) /
+		        100));
 		}; */
 
 		window.addEventListener('resize', () => {
 			this.setImgWidth();
 		});
 	}
+
 	move() {
 		this.revealContainer.style.width = `${this.range.value}%`;
 		this.handle.style.left = `${this.range.value}%`;
 		this.range.setAttribute('aria-valuenow', this.range.value);
 	}
+
 	move2(e) {
 		if (e < 5) {
 			e = 0;
