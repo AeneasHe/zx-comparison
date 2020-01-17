@@ -37,9 +37,12 @@ export default {
 		},
 		src2: {
 			type: String,
-			default: '50'
+			default: ''
 		},
-		start: {}
+		start: {
+			type: String,
+			default: '50'
+		}
 	},
 	data() {
 		return {};
