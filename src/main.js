@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import zxComparison from '../components/export.js'
+import zxComparison from './components/export.js'
 Vue.component('byui-comparison', zxComparison)
 Vue.config.productionTip = false
 new Vue({
